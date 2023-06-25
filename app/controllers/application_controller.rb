@@ -7,10 +7,10 @@ class ApplicationController < Sinatra::Base
     dogs.to_json
   end
 
-#   get '/dogs/:id/walks' do 
-#     dog = Dog.find(params[:id])
-#     walks = dog.walks
-#     walks.to_json
-#   end
+  get '/dogs/:id/walks' do 
+    dog = Dog.find(params[:id])
+    walks = dog.walks
+    walks.to_json
+  end
 
 end
