@@ -9,8 +9,9 @@ class ApplicationController < Sinatra::Base
 
   get '/dogs/:id/walks' do 
     dog = Dog.find(params[:id])
-    walks = dog.walks
-    walks.to_json
+    # walks = dog.walks
+    # walks.to_json
+    dog.to_json(include: :walks)
   end
 
 end
