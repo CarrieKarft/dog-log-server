@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
 #   # Add your routes here
   get "/dogs" do
     dogs = Dog.all.order(:name)
-    dogs.to_json
+    dogs.to_json(include: :walks)
   end
 
   get '/dogs/:id/walks' do 
@@ -15,14 +15,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/walks' do
-    walk = Walk.create(
+    dog = Dog.find(params[:dog_id])
+    walk = dog.walks.create(
       location: params[:location],
       used_bathroom: params[:used_bathroom],
       duration_in_minutes: params[:duration_in_minutes],
       distance_in_miles: params[:distance_in_miles],
       medication_given: params[:medication_given],
-      notes: params[:notes],
-      dog_id: params[:dog_id]
+      notes: params[:notes]
     )
     walk.to_json
   end
@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
       energy_level: params[:energy_level],
       medication: params[:medication]
     )
-    dog.to_json
+    dog.to_json(include: :walks)
   end
 
   delete '/walks/:id' do
