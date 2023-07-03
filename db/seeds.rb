@@ -32,7 +32,7 @@ Dog.create(
 
 Dog.all.each do |dog|
     rand(1..4).times do
-        Walk.create(location: Faker::Address.street_name, used_bathroom: rand(0..1), duration_in_minutes: rand(30..120), distance_in_miles: rand(1.0..6.0), medication_given: rand(0..1), notes: "NA", dog_id: dog.id)
+        Walk.create(location: Faker::Address.street_name, used_bathroom: rand(0..1), duration_in_minutes: rand(30..120), distance_in_miles: rand(1.0..6.0).round(2), medication_given: rand(0..1), notes: "NA", dog_id: dog.id)
     end
 end
 
