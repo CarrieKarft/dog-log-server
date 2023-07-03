@@ -7,13 +7,6 @@ class ApplicationController < Sinatra::Base
     dogs.to_json(include: :walks)
   end
 
-  get '/dogs/:id/walks' do 
-    dog = Dog.find(params[:id])
-    # walks = dog.walks
-    # walks.to_json
-    dog.to_json(include: :walks)
-  end
-
   post '/walks' do
     dog = Dog.find(params[:dog_id])
     walk = dog.walks.create(
